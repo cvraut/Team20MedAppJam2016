@@ -120,32 +120,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public static class TitlePageFragment extends Fragment {
-        /**
-         * The fragment that should become the title page of this app
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public TitlePageFragment(){
-        }
-
-        public static PlaceholderFragment newInstance(){
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, 0);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
-    }
-
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -171,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            if(position<=14 && 0<=position) {
+            if (position<=14 && 0<=position) {
                     return "SECTION "+Integer.toString(position+1);
             }
             return null;
