@@ -1,4 +1,4 @@
-package com.uci.android101.a2016medappjam;
+package com.uci.android101.team20medappjam2016;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -24,8 +24,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
         return this.fragments.get(position);
     }
 
@@ -37,13 +35,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        switch (position) {
-            case 0:
-                return "SECTION 1";
-            case 1:
-                return "SECTION 2";
-            case 2:
-                return "SECTION 3";
+        if (position<=14 && 0<=position) {
+            return "QUESTION "+Integer.toString(position+1);
         }
         return null;
     }

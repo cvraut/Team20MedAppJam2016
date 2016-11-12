@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.webkit.WebChromeClient;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -28,6 +30,8 @@ public class TitleFragment extends Fragment {
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
+    public MyViewPager mViewPager;
+    Button begin;
 
     public TitleFragment() {
     }
@@ -50,6 +54,17 @@ public class TitleFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         TextView textView = (TextView) rootView.findViewById(R.id.title_label);
         textView.setText(R.string.title_format);
+        mViewPager = ((MainActivity) getActivity()).getPager();
+        begin = (Button)rootView.findViewById(R.id.button);
+        begin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mViewPager.setCurrentItem(getItem(+1), true);
+            }
+        });
         return rootView;
+    }
+    private int getItem(int i){
+        return mViewPager.getCurrentItem() + i;
     }
 }
