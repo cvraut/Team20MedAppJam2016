@@ -24,8 +24,8 @@ public class TextQuestionFragment extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static MainActivity.PlaceholderFragment newInstance(int sectionNumber) {
-        MainActivity.PlaceholderFragment fragment = new MainActivity.PlaceholderFragment();
+    public static TextQuestionFragment newInstance(int sectionNumber) {
+        TextQuestionFragment fragment = new TextQuestionFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         fragment.setArguments(args);
@@ -38,8 +38,8 @@ public class TextQuestionFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         TextView textView = (TextView) rootView.findViewById(R.id.section_label);
         textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+        mViewPager = ((MainActivity)getActivity()).getPager();
         nextPage = (Button) rootView.findViewById(R.id.button);
-        mViewPager = ((MainActivity) getActivity()).getPager();
         nextPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

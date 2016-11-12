@@ -29,13 +29,12 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 3 total pages.
         return this.fragments.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        if (position<=14 && 0<=position) {
+        if (0<=position) {
             return "QUESTION "+Integer.toString(position+1);
         }
         return null;
