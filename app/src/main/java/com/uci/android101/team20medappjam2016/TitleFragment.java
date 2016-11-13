@@ -55,7 +55,7 @@ public class TitleFragment extends Fragment {
         TextView textView = (TextView) rootView.findViewById(R.id.title_label);
         textView.setText(R.string.title_format);
         mViewPager = ((MainActivity) getActivity()).getPager();
-        begin = (Button)rootView.findViewById(R.id.button);
+        begin = (Button)rootView.findViewById(R.id.button_title);
         begin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
