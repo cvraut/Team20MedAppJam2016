@@ -1,5 +1,6 @@
 package com.uci.android101.team20medappjam2016;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -11,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -41,8 +43,27 @@ public class MainActivity extends AppCompatActivity {
                 fList.add(TitleFragment.newInstance());
             }
             else {
-                fList.add(TextQuestionFragment.newInstance(i));
+                fList.add(TextQuestionFragment.newInstance(i, "Why is Onodera Best Girl?"));
             }
+            /*
+            Eventually replace with a switch block to handle all the different questions.
+            switch(i) {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                case 13:
+                case 14:
+             */
         }
         return fList;
     }
@@ -66,6 +87,10 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.setAdapter(mSectionsPagerAdapter);
     }
 
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
     /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
