@@ -4,4 +4,6 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_format">WELCOME TO THE THUNDERDOME(actually the MMSE)</string>
     <string name="question_format">Question %1$d. %2$s</string>
+    <string name="button_title">BEGIN</string>
+    <string name="button_next">NEXT</string>
 </resources>
