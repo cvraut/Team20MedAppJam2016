@@ -6,12 +6,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:clickable="true"
-    android:focusableInTouchMode="true"
     tools:context="com.uci.android101.team20medappjam2016.MainActivity$PlaceholderFragment">
 
     <TextView
-        android:id="@+id/question_label"
+        android:id="@+id/section_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25sp"
@@ -20,19 +18,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_next"
-        android:id="@+id/button"
+        android:text="@string/button_results"
+        android:id="@+id/button_results"
         android:background="@color/colorPrimaryDark"
-        android:layout_marginBottom="53dp"
+        android:layout_marginBottom="55dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:id="@+id/answer_box"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_above="@+id/button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 </RelativeLayout>

@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
     tools:context="com.uci.android101.team20medappjam2016.MainActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -31,6 +33,8 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusableInTouchMode="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </android.support.design.widget.CoordinatorLayout>

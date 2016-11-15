@@ -6,33 +6,44 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:clickable="true"
-    android:focusableInTouchMode="true"
     tools:context="com.uci.android101.team20medappjam2016.MainActivity$PlaceholderFragment">
 
     <TextView
-        android:id="@+id/question_label"
+        android:id="@+id/section_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:layout_centerHorizontal="true"/>
 
+    <SeekBar
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id = "@+id/step_three"
+        android:background="@color/colorPrimary"
+        android:max="100"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="81dp" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_next"
-        android:id="@+id/button"
+        android:id="@+id/step_one"
         android:background="@color/colorPrimaryDark"
-        android:layout_marginBottom="53dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignTop="@+id/step_two"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="47dp" />
 
-    <EditText
-        android:id="@+id/answer_box"
-        android:layout_width="fill_parent"
+    <Switch
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_above="@+id/button"
+        android:id="@+id/step_two"
+        android:background="@color/colorPrimaryDark"
+        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp" />
+
 </RelativeLayout>
