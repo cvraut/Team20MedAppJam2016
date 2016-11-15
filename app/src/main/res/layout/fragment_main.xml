@@ -27,4 +27,15 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
+    <ImageView
+        android:id="@+id/imageDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnRotateImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next Image" />
+
 </RelativeLayout>
