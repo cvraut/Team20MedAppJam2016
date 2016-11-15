@@ -32,17 +32,6 @@
         android:layout_toEndOf="@+id/pen"
         android:layout_marginTop="16dp" />
 
-    <ImageView
-        android:id="@+id/doge"
-        android:background="@drawable/doge"
-        android:layout_width="217dp"
-        android:layout_height="217dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="31dp"
-        android:layout_marginEnd="31dp"
-        android:layout_alignTop="@+id/pen" />
-
     <TextView
         android:id="@+id/dog_text"
         android:layout_width="wrap_content"
@@ -65,16 +54,23 @@
         android:layout_alignParentStart="true" />
 
     <ImageView
+        android:id="@+id/doge"
+        android:background="@drawable/doge"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignTop="@+id/pen"
+        android:layout_toRightOf="@+id/question3"
+        android:layout_toEndOf="@+id/question3" />
+
+    <ImageView
         android:id="@+id/ball"
         android:background="@drawable/ball"
-        android:layout_width="175dp"
-        android:layout_height="175dp"
-        android:layout_marginRight="45dp"
-        android:layout_marginEnd="45dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/pen_text"
-        android:layout_alignEnd="@+id/pen_text"
-        android:layout_marginBottom="15dp" />
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/pen"
+        android:layout_toLeftOf="@+id/question3"
+        android:layout_toStartOf="@+id/question3" />
 
     <TextView
         android:id="@+id/ball_text"
@@ -82,10 +78,8 @@
         android:layout_height="wrap_content"
         android:text="Ball"
         android:textSize="50sp"
-        android:layout_marginLeft="46dp"
-        android:layout_marginStart="46dp"
-        android:layout_alignBottom="@+id/ball"
+        android:layout_below="@+id/dog_text"
         android:layout_toRightOf="@+id/pen"
         android:layout_toEndOf="@+id/pen"
-        android:layout_marginBottom="23dp" />
+        android:layout_marginTop="18dp" />
 </RelativeLayout>

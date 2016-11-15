@@ -32,7 +32,6 @@ public class ImageSwitcherExampleActivity extends Activity {
 
         initializeImageSwitcher();
         setInitialImage();
-        setImageRotateListener();
     }
 
     private void initializeImageSwitcher() {
@@ -75,21 +74,6 @@ public class ImageSwitcherExampleActivity extends Activity {
             }
         }
     };
-
-
-    private void setImageRotateListener() {
-        final Button rotatebutton = (Button) findViewById(R.id.btnRotateImage);
-        rotatebutton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                currImage++;
-                if (currImage == 3) {
-                    currImage = 0;
-                }
-                setCurrentImage();
-            }
-        });
-    }
 
     private void setInitialImage() {
         setCurrentImage();

@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.*;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
             else if(i == 3) {
                 fList.add(ThreeStepsFragment.newInstance(i, "Do these steps in order: Press the button, " +
                         "flip the switch, then slide the slider all the way."));
+            }
+
+            else if(i==4){
+                fList.add(ImageFragment.newInstance());
+
             }
 
             else {
