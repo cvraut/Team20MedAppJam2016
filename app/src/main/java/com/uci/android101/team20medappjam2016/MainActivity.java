@@ -42,8 +42,14 @@ public class MainActivity extends AppCompatActivity {
             if(i == 0){
                 fList.add(TitleFragment.newInstance());
             }
+
+            else if(i == 3) {
+                fList.add(ThreeStepsFragment.newInstance(i, "Do these steps in order: Press the button, " +
+                        "flip the switch, then slide the slider all the way."));
+            }
+
             else {
-                fList.add(TextQuestionFragment.newInstance(i, "Why is Onodera Best Girl?"));
+                fList.add(TextQuestionFragment.newInstance(i, "Where are we right now?"));
             }
             /*
             Eventually replace with a switch block to handle all the different questions.

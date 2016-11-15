@@ -2,18 +2,16 @@ package com.uci.android101.team20medappjam2016;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,7 +29,9 @@ public class ThreeStepsFragment extends Fragment {
     private int steps;
     private List<Integer> order;
 
-    public ThreeStepsFragment() {}
+    public ThreeStepsFragment() {
+        order = new ArrayList<Integer>();
+    }
 
     public static ThreeStepsFragment newInstance(int sectionNumber, String steps) {
         ThreeStepsFragment fragment = new ThreeStepsFragment();
@@ -44,7 +44,7 @@ public class ThreeStepsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.textquestion_fragment, container, false);
+        final View rootView = inflater.inflate(R.layout.threestep_fragment, container, false);
         TextView textView = (TextView) rootView.findViewById(R.id.section_label);
         textView.setText(getString(R.string.question_format, getArguments().getInt(ARG_SECTION_NUMBER), getArguments().getString(ARG_QUESTION)));
         mViewPager = ((MainActivity)getActivity()).getPager();

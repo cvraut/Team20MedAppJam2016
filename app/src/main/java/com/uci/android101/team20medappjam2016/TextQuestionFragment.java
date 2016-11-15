@@ -41,7 +41,7 @@ public class TextQuestionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.textquestion_fragment, container, false);
-        TextView textView = (TextView) rootView.findViewById(R.id.section_label);
+        TextView textView = (TextView) rootView.findViewById(R.id.question_label);
         textView.setText(getString(R.string.question_format, getArguments().getInt(ARG_SECTION_NUMBER), getArguments().getString(ARG_QUESTION)));
         mViewPager = ((MainActivity)getActivity()).getPager();
         final EditText textField = (EditText) rootView.findViewById(R.id.answer_box);
