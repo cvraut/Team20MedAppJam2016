@@ -37,7 +37,7 @@ public class TimeDrawFragment extends Fragment{
     private static final String ARG_QUESTION = "section_question";
     public MyViewPager mViewPager;
     public DrawingView drawView1;
-    Button nextPage;
+    Button nextPage, clear;
 
     public TimeDrawFragment() {}
 
@@ -55,6 +55,13 @@ public class TimeDrawFragment extends Fragment{
         View rootView = inflater.inflate(R.layout.drawtime_fragment, container, false);
         mViewPager = ((MainActivity) getActivity()).getPager();
         drawView1 = (DrawingView) rootView.findViewById(R.id.draw_time);
+        clear = (Button)rootView.findViewById(R.id.button_clear);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawView1.clearCanvas();
+            }
+        });
         nextPage = (Button)rootView.findViewById(R.id.button_next);
         nextPage.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,4 +9,5 @@
     <string name="button_results">Home</string>
     <string name="results">RESULTS:
                             Score: %1$d</string>
+    <string name="button_clear">CLEAR</string>
 </resources>
