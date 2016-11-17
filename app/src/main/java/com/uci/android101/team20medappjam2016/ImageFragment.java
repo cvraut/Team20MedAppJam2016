@@ -47,7 +47,7 @@ public class ImageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.image_fragment, container, false);
         mViewPager = ((MainActivity) getActivity()).getPager();
-        begin = (Button)rootView.findViewById(R.id.button_title);
+        begin = (Button)rootView.findViewById(R.id.button_next);
         begin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

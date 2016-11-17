@@ -52,9 +52,10 @@ public class TimeDrawFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.textquestion_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.drawtime_fragment, container, false);
+        mViewPager = ((MainActivity) getActivity()).getPager();
         drawView1 = (DrawingView) rootView.findViewById(R.id.draw_time);
-        nextPage = (Button)rootView.findViewById(R.id.step_one);
+        nextPage = (Button)rootView.findViewById(R.id.button_next);
         nextPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,6 +70,7 @@ public class TimeDrawFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override

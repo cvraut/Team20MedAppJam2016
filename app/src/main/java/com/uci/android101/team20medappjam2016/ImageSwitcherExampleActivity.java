@@ -24,7 +24,7 @@ public class ImageSwitcherExampleActivity extends Activity {
 
     private Integer images[] = {R.drawable.ball, R.drawable.doge, R.drawable.pen,R.drawable.harambe};
     private int currImage = 0;
-
+    /*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +83,7 @@ public class ImageSwitcherExampleActivity extends Activity {
         final ImageSwitcher imageSwitcher = (ImageSwitcher) findViewById(R.id.imageSwitcher);
         imageSwitcher.setImageResource(images[currImage]);
     }
+    */
 
 }
 

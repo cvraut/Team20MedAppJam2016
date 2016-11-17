@@ -43,11 +43,13 @@ public class MainActivity extends AppCompatActivity {
                 fList.add(TitleFragment.newInstance());
             }
 
-            else if(i == 3) {
+            else if(i == 2) {
                 fList.add(ThreeStepsFragment.newInstance(i, "Do these steps in order: Press the button, " +
                         "flip the switch, then slide the slider all the way."));
             }
-
+            else if(i==3) {
+                fList.add(TimeDrawFragment.newInstance(i, "Draw the time pictured in the lower left."));
+            }
             else if(i==4){
                 fList.add(ImageFragment.newInstance());
 
@@ -130,11 +132,9 @@ public class MainActivity extends AppCompatActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
+    /*
     public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
+
         private static final String ARG_SECTION_NUMBER = "section_number";
         public MyViewPager mViewPager;
         Button nextPage;
@@ -142,10 +142,7 @@ public class MainActivity extends AppCompatActivity {
         public PlaceholderFragment() {
         }
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
+
         public static PlaceholderFragment newInstance(int sectionNumber) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
@@ -170,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
             return rootView;
         }
     }
-
+    */
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.

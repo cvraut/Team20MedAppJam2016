@@ -22,14 +22,44 @@ public class DrawingView extends View {
     private Path mPath;
     private Paint mBitmapPaint;
     Context context;
-    private Paint circlePaint;
+    private Paint circlePaint, mPaint;
     private Path circlePath;
 
-    public DrawingView(Context c) {
-        super(c);
+    public DrawingView(Context c, AttributeSet attrs) {
+        super(c, attrs);
         context = c;
         mPath = new Path();
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setDither(true);
+        mPaint.setColor(Color.GREEN);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeJoin(Paint.Join.ROUND);
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setStrokeWidth(12);
+        circlePaint = new Paint();
+        circlePath = new Path();
+        circlePaint.setAntiAlias(true);
+        circlePaint.setColor(Color.BLUE);
+        circlePaint.setStyle(Paint.Style.STROKE);
+        circlePaint.setStrokeJoin(Paint.Join.MITER);
+        circlePaint.setStrokeWidth(4f);
+    }
+
+    public DrawingView(Context c, AttributeSet attrs, int defStyle) {
+        super(c, attrs, defStyle);
+        context = c;
+        mPath = new Path();
+        mBitmapPaint = new Paint(Paint.DITHER_FLAG);
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setDither(true);
+        mPaint.setColor(Color.GREEN);
+        mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setStrokeJoin(Paint.Join.ROUND);
+        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setStrokeWidth(12);
         circlePaint = new Paint();
         circlePath = new Path();
         circlePaint.setAntiAlias(true);
@@ -52,7 +82,7 @@ public class DrawingView extends View {
         super.onDraw(canvas);
 
         canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
-        //canvas.drawPath(mPath, mPaint);
+        canvas.drawPath(mPath, mPaint);
         canvas.drawPath(circlePath, circlePaint);
     }
 
@@ -83,7 +113,7 @@ public class DrawingView extends View {
         mPath.lineTo(mX, mY);
         circlePath.reset();
         // commit the path to our offscreen
-        //mCanvas.drawPath(mPath, mPaint);
+        mCanvas.drawPath(mPath, mPaint);
         // kill this so we don't double draw
         mPath.reset();
     }
