@@ -12,9 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  * Created by codyx on 11/11/2016.
@@ -81,22 +86,76 @@ public class TextQuestionFragment extends Fragment {
         });
         return rootView;
     }
+
     private int getItem(int i) {
         return mViewPager.getCurrentItem() + i;
     }
+
     public void saveAnswer(String s) {
         int questionNum = getArguments().getInt(ARG_SECTION_NUMBER);
+        FileOutputStream fos;
+        DataOutputStream dos;
+        int score = 0;
         switch (questionNum){
             case 1:
+                // Default to Pacific Time Zone
+                GregorianCalendar calender = new GregorianCalendar();
+                Date time = new Date();
+                calender.setTime(time);
+                String [] datetime = s.split("\\s+");
                 break;
             case 2:
                 break;
             case 3:
+                String [] items = s.split("\\s+");
+                for(String item: items) {
+                    if(item.equals("dog") || item.equals("ball") || item.equals("pen") ) {
+                        score++;
+                    }
+                }
+                break;
+            case 4:
+                String [] ints = s.split("\\s+");
+                int[] results = new int[ints.length];
+                for (int i = 0; i < ints.length; i++) {
+                    try {
+                        results[i] = Integer.parseInt(ints[i]);
+                    } catch (NumberFormatException nfe) {
+                        continue;
+                    };
+                }
+                for(int i = 1; i < results.length; i++) {
+                    if(results[i] - results[i-1] == 7) {
+                        score++;
+                    }
+                }
+                break;
+            case 5:
+                String [] items2 = s.split("\\s+");
+                for(String item: items2) {
+                    if(item.equals("dog") || item.equals("ball") || item.equals("pen") ) {
+                        score++;
+                    }
+                }
+                break;
+            case 7:
+                List<String> input = Arrays.asList(s.split("\\s+"));
+                List<String> phrase = Arrays.asList("No", "if's", "ands", "or", "buts");
+                if(input.equals(phrase)) {
+                    score++;
+                }
+                break;
+            case 10:
+                if(s.equals("yes") || s.equals("YES")) {
+                    score++;
+                }
                 break;
         }
         try {
-            FileOutputStream fos = ((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_PRIVATE);
-            fos.write("ASDAFA".getBytes());
+            fos = ((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_PRIVATE);
+            dos = new DataOutputStream(fos);
+            dos.write(score);
+            dos.close();
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
