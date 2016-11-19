@@ -1,5 +1,6 @@
 package com.uci.android101.team20medappjam2016;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
@@ -11,6 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 /**
  * Created by codyx on 11/11/2016.
  */
@@ -18,6 +23,7 @@ import android.widget.TextView;
 public class TextQuestionFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String ARG_QUESTION = "section_question";
+    private final String SCORE_FILE = "scorefile";
     public MyViewPager mViewPager;
     Button nextPage;
 
@@ -78,8 +84,26 @@ public class TextQuestionFragment extends Fragment {
     private int getItem(int i) {
         return mViewPager.getCurrentItem() + i;
     }
-    public int saveAnswer(String s) {
-        return 0;
+    public void saveAnswer(String s) {
+        int questionNum = getArguments().getInt(ARG_SECTION_NUMBER);
+        switch (questionNum){
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+        try {
+            FileOutputStream fos = ((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_PRIVATE);
+            fos.write("ASDAFA".getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

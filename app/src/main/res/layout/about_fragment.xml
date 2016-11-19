@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,7 +12,7 @@
     tools:context="com.uci.android101.team20medappjam2016.MainActivity">
 
     <TextView
-        android:id="@+id/question_label"
+        android:id="@+id/about_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25sp"
@@ -20,19 +21,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_next"
-        android:id="@+id/button"
+        android:text="@string/button_back"
+        android:id="@+id/button_back"
         android:background="@color/colorPrimaryDark"
-        android:layout_marginBottom="53dp"
+        android:layout_marginBottom="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:id="@+id/answer_box"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_above="@+id/button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 </RelativeLayout>

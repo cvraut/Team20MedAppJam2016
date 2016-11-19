@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.uci.android101.team20medappjam2016.MainActivity$PlaceholderFragment">
+    tools:context="com.uci.android101.team20medappjam2016.MainActivity">
 
 
     <TextView
@@ -17,6 +17,14 @@
         android:layout_centerHorizontal="true"/>
 
 
+    <ImageView
+        android:id="@+id/pen"
+        android:background="@drawable/drawtimeclock"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,17 +32,46 @@
         android:id="@+id/button_next"
         android:background="@color/colorPrimaryDark"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="33dp" />
+
+    <EditText
+        android:id="@+id/answer_box"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_above="@+id/button_next"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <!---
+    <com.app.widgets.DrawingView
+        android:id="@+id/draw_minute"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:background="@android:color/transparent"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/title_label"
+        android:layout_toEndOf="@+id/title_label" />
 
     <com.app.widgets.DrawingView
         android:id="@+id/draw_time"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:background="@android:color/transparent"
-        android:layout_below="@+id/title_label"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/button_clear"
+        android:layout_alignLeft="@+id/button_clear"
+        android:layout_alignStart="@+id/button_clear" />
 
+    <com.app.widgets.DrawingView
+        android:id="@+id/draw_hour"
+        android:layout_width="30dp"
+        android:layout_height="90dp"
+        android:background="@android:color/transparent"
+        android:layout_alignBottom="@+id/draw_time"
+        android:layout_alignRight="@+id/draw_minute"
+        android:layout_alignEnd="@+id/draw_minute"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,6 +84,8 @@
         android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp" />
+        -->
+
 
 
 </RelativeLayout>

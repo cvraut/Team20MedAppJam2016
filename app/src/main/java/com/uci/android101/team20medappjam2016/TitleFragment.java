@@ -20,7 +20,7 @@ public class TitleFragment extends Fragment {
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
     public MyViewPager mViewPager;
-    Button begin;
+    Button begin, about;
 
     public TitleFragment() {
     }
@@ -49,6 +49,13 @@ public class TitleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 mViewPager.setCurrentItem(getItem(+1), true);
+            }
+        });
+        about = (Button)rootView.findViewById(R.id.button_about);
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mViewPager.setCurrentItem(15, true);
             }
         });
         return rootView;

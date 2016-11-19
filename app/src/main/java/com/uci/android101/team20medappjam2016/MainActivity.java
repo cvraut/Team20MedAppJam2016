@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.*;
@@ -38,21 +39,26 @@ public class MainActivity extends AppCompatActivity {
 
     public List<Fragment> getFragments() {
         List<Fragment> fList = new ArrayList<Fragment>();
-        for(int i = 0; i < 14; i++) {
+        for(int i = 0; i < 16; i++) {
             if(i == 0){
                 fList.add(TitleFragment.newInstance());
             }
-
             else if(i == 2) {
                 fList.add(ThreeStepsFragment.newInstance(i, "Do these steps in order: Press the button, " +
                         "flip the switch, then slide the slider all the way."));
             }
             else if(i==3) {
-                fList.add(TimeDrawFragment.newInstance(i, "Draw the time pictured in the lower left."));
+                fList.add(TimeDrawFragment.newInstance(i, "What is the time indicated by the clock? Please enter the" +
+                        "time like this: 8:15"));
             }
             else if(i==4){
-                fList.add(ImageFragment.newInstance());
-
+                fList.add(ImageFragment.newInstance(i));
+            }
+            else if(i==14) {
+                fList.add(ResultsFragment.newInstance(i));
+            }
+            else if(i == 15) {
+                fList.add(AboutFragment.newInstance(i));
             }
             else {
                 fList.add(TextQuestionFragment.newInstance(i, "Where are we right now?"));
@@ -75,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
                 case 12:
                 case 13:
                 case 14:
+                case 15:
+                case 16:
              */
         }
         return fList;
