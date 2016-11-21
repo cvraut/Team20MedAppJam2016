@@ -1,6 +1,12 @@
 package com.uci.android101.team20medappjam2016;
 
 import android.content.Context;
+import android.location.Address;
+import android.location.Criteria;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -23,16 +29,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by codyx on 11/11/2016.
  */
 
-public class TextQuestionFragment extends Fragment {
+public class TextQuestionFragment extends Fragment implements LocationListener{
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String ARG_QUESTION = "section_question";
     private final String SCORE_FILE = "scorefile";
     public MyViewPager mViewPager;
+    public String finalAddress, country, city, county, state, zipcode;
     Button nextPage;
 
     public TextQuestionFragment(){
@@ -67,7 +75,7 @@ public class TextQuestionFragment extends Fragment {
                     String answer = textField.getText().toString();
                     saveAnswer(answer);
                     answered = true;
-                    //mViewPager.setCurrentItem(getItem(+1), true);
+                    ((MainActivity)getActivity()).hideKeyboard(rootView);
                 }
                 return answered;
             }
@@ -184,31 +192,72 @@ public class TextQuestionFragment extends Fragment {
                         break;
 
                 }
-                for(String t: datetime){
-                    if(t.equals(currentYear) || t.equals(currentDate) || t.toUpperCase().equals(currentDay)
-                            || t.toUpperCase().equals(currentMonth) || t.toUpperCase().equals(currentSeason)) {
-                        score++;
-                    }
+                if(s.contains(currentYear)) {
+                    score++;
+                }
+                if(s.contains(currentDate)) {
+                    score++;
+                }
+                if(s.toUpperCase().contains(currentDay)) {
+                    score++;
+                }
+                if(s.toUpperCase().contains(currentMonth)) {
+                    score++;
+                }
+                if(s.toUpperCase().contains(currentSeason)) {
+                    score++;
                 }
                 break;
             case 2:
-                break;
-            case 3:
-                String [] items = s.split("\\s+");
-                for(String item: items) {
-                    if(item.equals("dog") || item.equals("ball") || item.equals("pen") ) {
+                LocationManager mLocationManager = (LocationManager) ((MainActivity)getActivity()).getSystemService(Context.LOCATION_SERVICE);
+                Criteria criteria = new Criteria();
+                String provider = mLocationManager.getBestProvider(criteria, false);
+                Location location = null;
+                try {
+                    location = mLocationManager.getLastKnownLocation(provider);
+                }
+                catch (SecurityException e) {
+                    e.printStackTrace();
+                }
+                if(location != null) {
+                    onLocationChanged(location);
+                    if(country != null && s.contains(country)) {
+                        score++;
+                    }
+                    if(state != null && s.contains(state)) {
+                        score++;
+                    }
+                    if(county != null && s.contains(county)) {
+                        score++;
+                    }
+                    if(city != null && s.contains(city)) {
+                        score++;
+                    }
+                    if(zipcode != null && s.contains(zipcode)) {
                         score++;
                     }
                 }
                 break;
-            case 4:
+            case 3:
+                if(s.toLowerCase().contains("dog")) {
+                    score++;
+                }
+                if(s.toLowerCase().contains("pen")) {
+                    score++;
+                }
+                if(s.toLowerCase().contains("ball")) {
+                    score++;
+                }
+                break;
+            case 5:
                 String [] ints = s.split("\\s+");
                 int[] results = new int[ints.length];
                 for (int i = 0; i < ints.length; i++) {
                     try {
                         results[i] = Integer.parseInt(ints[i]);
-                    } catch (NumberFormatException nfe) {
-                        continue;
+                    }
+                    catch (NumberFormatException e) {
+                        e.printStackTrace();
                     };
                 }
                 for(int i = 1; i < results.length; i++) {
@@ -217,18 +266,18 @@ public class TextQuestionFragment extends Fragment {
                     }
                 }
                 break;
-            case 5:
-                String [] items2 = s.split("\\s+");
-                for(String item: items2) {
-                    if(item.equals("dog") || item.equals("ball") || item.equals("pen") ) {
-                        score++;
-                    }
+            case 6:
+                if(s.toLowerCase().contains("dog")) {
+                    score++;
                 }
-                break;
-            case 7:
-                List<String> input = Arrays.asList(s.split("\\s+"));
-                List<String> phrase = Arrays.asList("No", "if's", "ands", "or", "buts");
-                if(input.equals(phrase)) {
+                if(s.toLowerCase().contains("pen")) {
+                    score++;
+                }
+                if(s.toLowerCase().contains("ball")) {
+                    score++;
+                }
+            case 8:
+                if(s.toLowerCase().contains("no if's, ands, or buts.")) {
                     score++;
                 }
                 break;
@@ -238,19 +287,6 @@ public class TextQuestionFragment extends Fragment {
                 }
                 break;
         }
-        /*
-        try {
-            fos = ((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_PRIVATE);
-            dos = new DataOutputStream(fos);
-            dos.writeBytes(Integer.toString(score)+' ');
-            dos.close();
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }*/
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_APPEND));
             outputStreamWriter.write(score+' ');
@@ -261,4 +297,33 @@ public class TextQuestionFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onLocationChanged(Location location) {
+        double lat = location.getLatitude();
+        double lng = location.getLongitude();
+
+        Geocoder geoCoder = new Geocoder((MainActivity)getActivity(), Locale.getDefault());
+        StringBuilder builder = new StringBuilder();
+        try {
+            List<Address> address = geoCoder.getFromLocation(lat, lng, 1);
+            country = address.get(0).getCountryName();
+            county = address.get(0).getSubAdminArea();
+            city = address.get(0).getLocality();
+            state = address.get(0).getAdminArea();
+            zipcode = address.get(0).getPostalCode();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {}
+    @Override
+    public void onProviderEnabled(String s) {}
+    @Override
+    public void onProviderDisabled(String s) {}
 }

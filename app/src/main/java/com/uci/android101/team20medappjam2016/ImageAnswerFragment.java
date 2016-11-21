@@ -78,20 +78,20 @@ public class ImageAnswerFragment extends Fragment {
         textField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-            boolean answered = false;
-            if (id == EditorInfo.IME_ACTION_DONE) {
-                String answer = textField.getText().toString();
-                answered = checkAnswer(answer);
-            }
-            if (answered){
-                writeAnswer(score);
-                mViewPager.setCurrentItem(getItem(+1), true);
-            }
-            else {
-                textView.setText("Try Again");
-                mViewPager.setCurrentItem(getItem(-1), true);
-            }
-            return answered;
+                boolean answered = false;
+                if (id == EditorInfo.IME_ACTION_DONE) {
+                    String answer = textField.getText().toString();
+                    answered = checkAnswer(answer);
+                }
+                if (answered){
+                    writeAnswer(score);
+                    mViewPager.setCurrentItem(getItem(+1), true);
+                }
+                else {
+                    textView.setText("Try Again");
+                    mViewPager.setCurrentItem(getItem(-1), true);
+                }
+                return answered;
             }
         });
 
@@ -117,7 +117,6 @@ public class ImageAnswerFragment extends Fragment {
         }
         else {
             score = Math.max(0, score - 1);
-
             return false;
         }
     }
