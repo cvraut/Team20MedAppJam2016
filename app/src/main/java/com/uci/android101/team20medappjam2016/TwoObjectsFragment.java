@@ -1,5 +1,6 @@
 package com.uci.android101.team20medappjam2016;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
@@ -10,6 +11,12 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.io.DataOutput;
+import java.io.DataOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Created by codyx on 11/19/2016.
@@ -72,4 +79,27 @@ public class TwoObjectsFragment extends Fragment {
         return mViewPager.getCurrentItem() + i;
     }
 
+    private void saveAnswer(String s) {
+        String [] objects  = s.split("\\s+");
+        int score = 0;
+        FileOutputStream fos;
+        DataOutputStream dos;
+        for(String object: objects) {
+            if(object.toLowerCase().equals("cup") || object.toLowerCase().equals("watch")){
+                score++;
+            }
+        }
+        try {
+            fos = ((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_PRIVATE);
+            dos = new DataOutputStream(fos);
+            dos.write(score);
+            dos.close();
+        }
+        catch(FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
