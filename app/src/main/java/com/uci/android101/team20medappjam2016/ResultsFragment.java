@@ -1,5 +1,6 @@
 package com.uci.android101.team20medappjam2016;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -7,6 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.InputStreamReader;
+import java.io.InputStream;
+import android.util.Log;
 
 /**
  * Created by codyx on 11/14/2016.
@@ -33,9 +45,9 @@ public class ResultsFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.results_fragment, container, false);
         TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-        textView.setText(getString(R.string.results, getArguments().getInt(ARG_SECTION_NUMBER)));
-        mViewPager = ((MainActivity)getActivity()).getPager();
-        goBack = (Button)rootView.findViewById(R.id.button_results);
+        textView.setText(getString(R.string.results, ((MainActivity) getActivity()).getScore()));
+        mViewPager = ((MainActivity) getActivity()).getPager();
+        goBack = (Button) rootView.findViewById(R.id.button_results);
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

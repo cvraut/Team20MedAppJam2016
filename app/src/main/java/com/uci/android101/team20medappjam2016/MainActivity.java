@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     public com.uci.android101.team20medappjam2016.SectionsPagerAdapter mSectionsPagerAdapter;
+    public int totalScore;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -39,51 +40,60 @@ public class MainActivity extends AppCompatActivity {
 
     public List<Fragment> getFragments() {
         List<Fragment> fList = new ArrayList<Fragment>();
-        for(int i = 0; i < 16; i++) {
-            if(i == 0){
-                fList.add(TitleFragment.newInstance());
-            }
-            else if(i == 2) {
-                fList.add(ThreeStepsFragment.newInstance(i, "Do these steps in order: Press the button, " +
-                        "flip the switch, then slide the slider all the way."));
-            }
-            else if(i==3) {
-                fList.add(TimeDrawFragment.newInstance(i, "What is the time indicated by the clock? Please enter the" +
-                        "time like this: 8:15"));
-            }
-            else if(i==4){
-                fList.add(ImageFragment.newInstance(i));
-            }
-            else if(i==14) {
-                fList.add(ResultsFragment.newInstance(i));
-            }
-            else if(i == 15) {
-                fList.add(AboutFragment.newInstance(i));
-            }
-            else {
-                fList.add(TextQuestionFragment.newInstance(i, "Where are we right now?"));
-            }
-            /*
-            Eventually replace with a switch block to handle all the different questions.
+        for(int i = 0; i < 15; i++) {
             switch(i) {
                 case 0:
+                    fList.add(TitleFragment.newInstance());
+                    break;
                 case 1:
+                    fList.add(TextQuestionFragment.newInstance(i, "What Country are we in? State? County? City? Zip Code?"));
+                    break;
                 case 2:
+                    fList.add(TextQuestionFragment.newInstance(i, "What is the current Year? Month? Season? Date? Day of the week?"));
+                    break;
                 case 3:
+                    fList.add(ImageFragment.newInstance(i));
+                    break;
                 case 4:
+                    fList.add(ImageAnswerFragment.newInstance(i, "What were  the three images? This question will " +
+                            "repeat until all three are recalled correctly"));
+                    break;
                 case 5:
+                    fList.add(TextQuestionFragment.newInstance(i, "Count backwards by 7's from 100 (i.e. 22 15 8). " +
+                            "Please enter the numbers separated by spaces only like the example."));
+                    break;
                 case 6:
+                    fList.add(TextQuestionFragment.newInstance(i, "Earlier we showed three items on-screen. What were those items?"));
+                    break;
                 case 7:
+                    fList.add(TwoObjectsFragment.newInstance(i, "Please name the two objects shown here."));
+                    break;
                 case 8:
+                    fList.add(TextQuestionFragment.newInstance(i, "Tell the examinee to repeat the phrase: " +
+                            "No if's, ands, or buts, and enter their first response."));
+                    break;
                 case 9:
+                    fList.add(ThreeStepsFragment.newInstance(i, "Do these steps in order: Press the button, " +
+                            "flip the switch, then slide the slider all the way."));
+                    break;
                 case 10:
+                    fList.add(MultipleButtonsFragment.newInstance(i, "Press the red button."));
+                    break;
                 case 11:
+                    fList.add(TextQuestionFragment.newInstance(i, "Ask the examinee to make up any sentence. If the sentence " +
+                            "makes sense, enter 'yes', otherwise, enter 'no'."));
+                    break;
                 case 12:
+                    fList.add(TimeDrawFragment.newInstance(i, "What is the time indicated by the clock? Please enter the" +
+                            "time like this: 8:15"));
+                    break;
                 case 13:
+                    fList.add(ResultsFragment.newInstance(i));
+                    break;
                 case 14:
-                case 15:
-                case 16:
-             */
+                    fList.add(AboutFragment.newInstance(i));
+                    break;
+            }
         }
         return fList;
     }
@@ -111,6 +121,12 @@ public class MainActivity extends AppCompatActivity {
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+    public void appendScore(int i) {
+        totalScore+=i;
+    }
+    public int getScore() {
+        return totalScore;
     }
     /*
     @Override

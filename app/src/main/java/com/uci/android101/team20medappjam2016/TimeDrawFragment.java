@@ -77,7 +77,7 @@ public class TimeDrawFragment extends Fragment{
                     String answer = textField.getText().toString();
                     saveAnswer(answer);
                     answered = true;
-                    mViewPager.setCurrentItem(getItem(+1), true);
+                    ((MainActivity)getActivity()).hideKeyboard(rootView);
                 }
                 return answered;
             }
@@ -100,25 +100,13 @@ public class TimeDrawFragment extends Fragment{
         return rootView;
     }
     public void saveAnswer(String s) {
-
+        int score = 0;
+        if(s.contains("6:15")) {
+            score++;
+        }
+        ((MainActivity) getActivity()).appendScore(score);
     }
     private int getItem(int i) {
         return mViewPager.getCurrentItem() + i;
     }
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
 }
