@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -99,10 +100,94 @@ public class TextQuestionFragment extends Fragment {
         switch (questionNum){
             case 1:
                 // Default to Pacific Time Zone
-                GregorianCalendar calender = new GregorianCalendar();
+                GregorianCalendar calendar = new GregorianCalendar();
                 Date time = new Date();
-                calender.setTime(time);
+                calendar.setTime(time);
                 String [] datetime = s.split("\\s+");
+                String currentYear = String.valueOf(calendar.get(Calendar.YEAR));
+                String currentDate = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+                String currentMonth, currentSeason, currentDay;
+                currentMonth = currentSeason = currentDay = "";
+                switch (calendar.get(Calendar.MONTH)) {
+                    case Calendar.JANUARY:
+                        currentMonth = "JANUARY";
+                        currentSeason = "WINTER";
+                        break;
+                    case Calendar.FEBRUARY:
+                        currentMonth = "FEBRUARY";
+                        currentSeason = "WINTER";
+                        break;
+                    case Calendar.MARCH:
+                        currentMonth = "MARCH";
+                        currentSeason = "SPRING";
+                        break;
+                    case Calendar.APRIL:
+                        currentMonth = "APRIL";
+                        currentSeason = "SPRING";
+                        break;
+                    case Calendar.MAY:
+                        currentMonth = "MAY";
+                        currentSeason = "SPRING";
+                        break;
+                    case Calendar.JUNE:
+                        currentMonth = "JUNE";
+                        currentSeason = "SUMMER";
+                        break;
+                    case Calendar.JULY:
+                        currentMonth = "JULY";
+                        currentSeason = "SUMMER";
+                        break;
+                    case Calendar.AUGUST:
+                        currentMonth = "AUGUST";
+                        currentSeason = "SUMMER";
+                        break;
+                    case Calendar.SEPTEMBER:
+                        currentMonth = "SEPTEMBER";
+                        currentSeason = "FALL";
+                        break;
+                    case Calendar.OCTOBER:
+                        currentMonth = "OCTOBER";
+                        currentSeason = "FALL";
+                        break;
+                    case Calendar.NOVEMBER:
+                        currentMonth = "NOVEMBER";
+                        currentSeason = "FALL";
+                        break;
+                    case Calendar.DECEMBER:
+                        currentMonth = "DECEMBER";
+                        currentSeason = "WINTER";
+                        break;
+                }
+                switch (calendar.get(Calendar.DAY_OF_WEEK)) {
+                    case Calendar.MONDAY:
+                        currentDay = "MONDAY";
+                        break;
+                    case Calendar.TUESDAY:
+                        currentDay = "TUESDAY";
+                        break;
+                    case Calendar.WEDNESDAY:
+                        currentDay = "WEDNESDAY";
+                        break;
+                    case Calendar.THURSDAY:
+                        currentDay = "THURSDAY";
+                        break;
+                    case Calendar.FRIDAY:
+                        currentDay = "FRIDAY";
+                        break;
+                    case Calendar.SATURDAY:
+                        currentDay = "SATURDAY";
+                        break;
+                    case Calendar.SUNDAY:
+                        currentDay = "SUNDAY";
+                        break;
+
+                }
+                for(String t: datetime){
+                    if(t.equals(currentYear) || t.equals(currentDate) || t.toUpperCase().equals(currentDay)
+                            || t.toUpperCase().equals(currentMonth) || t.toUpperCase().equals(currentSeason)) {
+                        score++;
+                    }
+                }
                 break;
             case 2:
                 break;
@@ -146,7 +231,7 @@ public class TextQuestionFragment extends Fragment {
                 }
                 break;
             case 10:
-                if(s.equals("yes") || s.equals("YES")) {
+                if(s.toLowerCase().equals("yes")) {
                     score++;
                 }
                 break;

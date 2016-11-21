@@ -18,6 +18,10 @@ import android.webkit.WebChromeClient;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.RunnableFuture;
+
 
 /**
  * Created by chinmay on 11/14/2016.
@@ -26,6 +30,7 @@ import android.widget.TextView;
 public class ImageFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     public MyViewPager mViewPager;
+    public boolean onStop = false;
     Button begin;
     public ImageFragment() {
     }
@@ -54,14 +59,6 @@ public class ImageFragment extends Fragment {
                 mViewPager.setCurrentItem(getItem(+1), true);
             }
         });
-        /*try {
-            Thread.sleep(2000);
-        }
-        catch (Exception e){
-            //System.out.println(e);
-        }*/
-
-        //mViewPager.setCurrentItem(getItem(+1), true);
         return rootView;
     }
 
