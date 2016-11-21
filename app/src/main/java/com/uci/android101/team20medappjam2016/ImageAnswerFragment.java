@@ -35,24 +35,19 @@ public class ImageAnswerFragment extends Fragment {
     private static final String ARG_QUESTION = "section_question";
     private final String SCORE_FILE = "scorefile";
     public MyViewPager mViewPager;
-    private int score;
-    private boolean nextPage = false;
-    private final int interval = 6000; // 1 Second
+    private int score = 5;
+    private final int interval = 6000;
     private Handler handler = new Handler();
     private Runnable runnable = new Runnable(){
         public void run() {
             System.out.println("Help");
-            mViewPager.setCurrentItem(getItem(+1), true);
+            mViewPager.setCurrentItem(4, true);
         }
     };
 
     public ImageAnswerFragment(){
     }
 
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
     public static ImageAnswerFragment newInstance(int sectionNumber, String question) {
         ImageAnswerFragment fragment = new ImageAnswerFragment();
         Bundle args = new Bundle();
@@ -89,7 +84,7 @@ public class ImageAnswerFragment extends Fragment {
                 }
                 else {
                     textView.setText("Try Again");
-                    mViewPager.setCurrentItem(getItem(-1), true);
+                    mViewPager.setCurrentItem(3, true);
                 }
                 return answered;
             }

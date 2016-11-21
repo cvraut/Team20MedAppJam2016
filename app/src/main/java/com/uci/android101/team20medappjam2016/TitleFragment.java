@@ -55,7 +55,7 @@ public class TitleFragment extends Fragment {
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mViewPager.setCurrentItem(15, true);
+                mViewPager.setCurrentItem(14, true);
             }
         });
         return rootView;

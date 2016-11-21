@@ -238,17 +238,6 @@ public class TextQuestionFragment extends Fragment implements LocationListener{
                     }
                 }
                 break;
-            case 3:
-                if(s.toLowerCase().contains("dog")) {
-                    score++;
-                }
-                if(s.toLowerCase().contains("pen")) {
-                    score++;
-                }
-                if(s.toLowerCase().contains("ball")) {
-                    score++;
-                }
-                break;
             case 5:
                 String [] ints = s.split("\\s+");
                 int[] results = new int[ints.length];
@@ -276,12 +265,14 @@ public class TextQuestionFragment extends Fragment implements LocationListener{
                 if(s.toLowerCase().contains("ball")) {
                     score++;
                 }
+                break;
             case 8:
-                if(s.toLowerCase().contains("no if's, ands, or buts.")) {
+                if(s.toLowerCase().contains("no") && s.toLowerCase().contains("if's") && s.toLowerCase().contains("ands") &&
+                    s.toLowerCase().contains("or") && s.toLowerCase().contains("buts")) {
                     score++;
                 }
                 break;
-            case 10:
+            case 11:
                 if(s.toLowerCase().equals("yes")) {
                     score++;
                 }
