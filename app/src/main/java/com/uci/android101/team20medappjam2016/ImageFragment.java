@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.widget.Button;
 import android.widget.TextView;
+import android.os.Handler;
 
 
 /**
@@ -27,6 +28,14 @@ public class ImageFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     public MyViewPager mViewPager;
     Button begin;
+    /*private final int interval = 1000000; // 1 Second
+    private Handler handler = new Handler();
+    private Runnable runnable = new Runnable(){
+        public void run() {
+            System.out.println("Help");
+            mViewPager.setCurrentItem(getItem(+1), true);
+        }
+    };*/
     public ImageFragment() {
     }
 
@@ -54,14 +63,11 @@ public class ImageFragment extends Fragment {
                 mViewPager.setCurrentItem(getItem(+1), true);
             }
         });
-        /*try {
-            Thread.sleep(2000);
-        }
-        catch (Exception e){
-            //System.out.println(e);
-        }*/
 
-        //mViewPager.setCurrentItem(getItem(+1), true);
+        /*System.out.println("Handler begins");
+        handler.postAtTime(runnable, System.currentTimeMillis()+interval);
+        handler.postDelayed(runnable, interval);
+        System.out.println("Handler Finished");*/
         return rootView;
     }
 

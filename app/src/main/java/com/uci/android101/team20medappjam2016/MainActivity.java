@@ -54,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
             else if(i==4){
                 fList.add(ImageFragment.newInstance(i));
             }
+            else if(i==5){
+                fList.add(ImageAnswerFragment.newInstance(i,"What were  the three images?"));
+            }
             else if(i==14) {
                 fList.add(ResultsFragment.newInstance(i));
             }

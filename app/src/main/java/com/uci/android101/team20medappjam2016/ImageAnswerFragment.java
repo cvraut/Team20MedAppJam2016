@@ -1,7 +1,9 @@
 package com.uci.android101.team20medappjam2016;
 
 import android.content.Context;
+import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -25,22 +27,30 @@ import java.util.List;
  * Created by codyx on 11/11/2016.
  */
 
-public class TextQuestionFragment extends Fragment {
+public class ImageAnswerFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String ARG_QUESTION = "section_question";
     private final String SCORE_FILE = "scorefile";
     public MyViewPager mViewPager;
     Button nextPage;
+    private final int interval = 6000; // 1 Second
+    private Handler handler = new Handler();
+    private Runnable runnable = new Runnable(){
+        public void run() {
+            System.out.println("Help");
+            mViewPager.setCurrentItem(getItem(+1), true);
+        }
+    };
 
-    public TextQuestionFragment(){
+    public ImageAnswerFragment(){
     }
 
     /**
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public static TextQuestionFragment newInstance(int sectionNumber, String question) {
-        TextQuestionFragment fragment = new TextQuestionFragment();
+    public static ImageAnswerFragment newInstance(int sectionNumber, String question) {
+        ImageAnswerFragment fragment = new ImageAnswerFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
         args.putString(ARG_QUESTION, question);
@@ -55,6 +65,11 @@ public class TextQuestionFragment extends Fragment {
         TextView textView = (TextView) rootView.findViewById(R.id.question_label);
         textView.setText(getString(R.string.question_format, getArguments().getInt(ARG_SECTION_NUMBER), getArguments().getString(ARG_QUESTION)));
         mViewPager = ((MainActivity)getActivity()).getPager();
+
+        System.out.println("Handler begins");
+        handler.postAtTime(runnable, System.currentTimeMillis()+interval);
+        handler.postDelayed(runnable, interval);
+        System.out.println("Handler Finished");
         final EditText textField = (EditText) rootView.findViewById(R.id.answer_box);
         textField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -64,11 +79,12 @@ public class TextQuestionFragment extends Fragment {
                     String answer = textField.getText().toString();
                     saveAnswer(answer);
                     answered = true;
-                    //mViewPager.setCurrentItem(getItem(+1), true);
+                    mViewPager.setCurrentItem(getItem(+1), true);
                 }
                 return answered;
             }
         });
+
         textField.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
