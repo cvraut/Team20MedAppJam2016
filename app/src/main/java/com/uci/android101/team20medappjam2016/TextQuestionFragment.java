@@ -240,17 +240,18 @@ public class TextQuestionFragment extends Fragment implements LocationListener{
                 break;
             case 5:
                 String [] ints = s.split("\\s+");
-                int[] results = new int[ints.length];
+                int[] results = new int[ints.length+1];
+                results[0] = 100;
                 for (int i = 0; i < ints.length; i++) {
                     try {
-                        results[i] = Integer.parseInt(ints[i]);
+                        results[i+1] = Integer.parseInt(ints[i]);
                     }
                     catch (NumberFormatException e) {
                         e.printStackTrace();
                     };
                 }
                 for(int i = 1; i < results.length; i++) {
-                    if(results[i] - results[i-1] == 7) {
+                    if(results[i-1] - results[i] == 7) {
                         score++;
                     }
                 }

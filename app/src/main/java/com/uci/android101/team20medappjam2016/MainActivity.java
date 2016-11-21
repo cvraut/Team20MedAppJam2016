@@ -46,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
                     fList.add(TitleFragment.newInstance());
                     break;
                 case 1:
-                    fList.add(TextQuestionFragment.newInstance(i, "What Country are we in? State? County? City? Zip Code?"));
+                    fList.add(TextQuestionFragment.newInstance(i, "What is the current Year? Month? Season? Date? Day of the week?"));
                     break;
                 case 2:
-                    fList.add(TextQuestionFragment.newInstance(i, "What is the current Year? Month? Season? Date? Day of the week?"));
+                    fList.add(TextQuestionFragment.newInstance(i, "What Country are we in? State? County? City? Zip Code?"));
                     break;
                 case 3:
                     fList.add(ImageFragment.newInstance(i));
