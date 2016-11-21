@@ -46,10 +46,10 @@ public class MainActivity extends AppCompatActivity {
                     fList.add(TitleFragment.newInstance());
                     break;
                 case 1:
-                    fList.add(TextQuestionFragment.newInstance(i, "What Country are we in? State? County? City? Zip Code?"));
+                    fList.add(TextQuestionFragment.newInstance(i, "What is the current Year? Month? Season? Date? Day of the week?"));
                     break;
                 case 2:
-                    fList.add(TextQuestionFragment.newInstance(i, "What is the current Year? Month? Season? Date? Day of the week?"));
+                    fList.add(TextQuestionFragment.newInstance(i, "What Country are we in? State? County? City? Zip Code?"));
                     break;
                 case 3:
                     fList.add(ImageFragment.newInstance(i));
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 8:
                     fList.add(TextQuestionFragment.newInstance(i, "Tell the examinee to repeat the phrase: " +
-                            "No if's, ands, or buts, and enter their first response."));
+                            "No ifs, ands, or buts, and enter their first response."));
                     break;
                 case 9:
                     fList.add(ThreeStepsFragment.newInstance(i, "Do these steps in order: Press the button, " +
@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void appendScore(int i) {
         totalScore+=i;
+        System.out.println(totalScore);
     }
     public int getScore() {
         return totalScore;

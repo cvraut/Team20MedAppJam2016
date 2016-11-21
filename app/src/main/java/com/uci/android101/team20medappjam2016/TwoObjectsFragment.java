@@ -25,7 +25,7 @@ import java.io.IOException;
 public class TwoObjectsFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String ARG_QUESTION = "section_question";
-    private final String SCORE_FILE = "scorefile";
+    public String answer;
     public MyViewPager mViewPager;
     Button nextPage;
 
@@ -48,15 +48,17 @@ public class TwoObjectsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.textquestion_fragment, container, false);
+        final View rootView = inflater.inflate(R.layout.twoobjects_fragment, container, false);
+        TextView textView = (TextView) rootView.findViewById(R.id.question_label);
+        textView.setText(getString(R.string.question_format, getArguments().getInt(ARG_SECTION_NUMBER), getArguments().getString(ARG_QUESTION)));
+        mViewPager = ((MainActivity)getActivity()).getPager();
         final EditText textField = (EditText) rootView.findViewById(R.id.answer_box);
         textField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 boolean answered = false;
                 if (id == EditorInfo.IME_ACTION_DONE) {
-                    String answer = textField.getText().toString();
-                    saveAnswer(answer);
+                    answer = textField.getText().toString();
                     answered = true;
                     ((MainActivity)getActivity()).hideKeyboard(rootView);
                 }
@@ -71,7 +73,14 @@ public class TwoObjectsFragment extends Fragment {
                 }
             }
         });
-        mViewPager = ((MainActivity) getActivity()).getPager();
+        nextPage = (Button) rootView.findViewById(R.id.button_next);
+        nextPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveAnswer(answer);
+                mViewPager.setCurrentItem(getItem(+1), true);
+            }
+        });
         return rootView;
     }
 

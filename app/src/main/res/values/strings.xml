@@ -2,7 +2,7 @@
     <string name="app_name">Team20MedAppJam2016</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
-    <string name="title_format">WELCOME TO THE THUNDERDOME(actually the MMSE)</string>
+    <string name="title_format">MINI MENTAL STATE EXAMINATION</string>
     <string name="about">INSERT ABOUT INFO HERE</string>
     <string name="question_format">Question %1$d. %2$s</string>
     <string name="button_title">BEGIN</string>
@@ -14,4 +14,7 @@
     <string name="button_clear">CLEAR</string>
     <string name="button_back">BACK</string>
     <string name="button_about">ABOUT</string>
+    <string name="result_none">No cognitive impairment: Little to no risk of Alzheimer\'s</string>
+    <string name="result_mild">Mild cognitive impairment: Doctor attention might be necessary for Alzheimer\'s.</string>
+    <string name="result_severe">Severe cognitive impariment: Doctor attention highly recommended for Alzheimer\'s.</string>
 </resources>

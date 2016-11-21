@@ -40,7 +40,7 @@ public class TextQuestionFragment extends Fragment implements LocationListener{
     private static final String ARG_QUESTION = "section_question";
     private final String SCORE_FILE = "scorefile";
     public MyViewPager mViewPager;
-    public String finalAddress, country, city, county, state, zipcode;
+    public String answer, country, city, county, state, zipcode;
     Button nextPage;
 
     public TextQuestionFragment(){
@@ -72,8 +72,7 @@ public class TextQuestionFragment extends Fragment implements LocationListener{
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 boolean answered = false;
                 if (id == EditorInfo.IME_ACTION_DONE) {
-                    String answer = textField.getText().toString();
-                    saveAnswer(answer);
+                    answer = textField.getText().toString();
                     answered = true;
                     ((MainActivity)getActivity()).hideKeyboard(rootView);
                 }
@@ -84,6 +83,7 @@ public class TextQuestionFragment extends Fragment implements LocationListener{
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if(!hasFocus) {
+                    saveAnswer(answer);
                     ((MainActivity)getActivity()).hideKeyboard(rootView);
                 }
             }
@@ -109,7 +109,6 @@ public class TextQuestionFragment extends Fragment implements LocationListener{
         int score = 0;
         switch (questionNum){
             case 1:
-                // Default to Pacific Time Zone
                 GregorianCalendar calendar = new GregorianCalendar();
                 Date time = new Date();
                 calendar.setTime(time);
@@ -240,17 +239,18 @@ public class TextQuestionFragment extends Fragment implements LocationListener{
                 break;
             case 5:
                 String [] ints = s.split("\\s+");
-                int[] results = new int[ints.length];
+                int[] results = new int[ints.length+1];
+                results[0] = 100;
                 for (int i = 0; i < ints.length; i++) {
                     try {
-                        results[i] = Integer.parseInt(ints[i]);
+                        results[i+1] = Integer.parseInt(ints[i]);
                     }
                     catch (NumberFormatException e) {
                         e.printStackTrace();
                     };
                 }
                 for(int i = 1; i < results.length; i++) {
-                    if(results[i] - results[i-1] == 7) {
+                    if(results[i-1] - results[i] == 7) {
                         score++;
                     }
                 }

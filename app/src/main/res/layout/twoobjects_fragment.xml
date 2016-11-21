@@ -10,19 +10,18 @@
     tools:context="com.uci.android101.team20medappjam2016.MainActivity">
 
     <TextView
-        android:id="@+id/title_label"
+        android:id="@+id/question_label"
         android:layout_width="225dp"
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:layout_centerHorizontal="true"/>
 
-    <EditText
-        android:id="@+id/answer_box"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/cup"
+    <ImageView
+        android:id="@+id/cup"
+        android:background="@drawable/cup"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -33,20 +32,25 @@
         android:layout_height="150dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="13dp"
-        android:layout_marginEnd="13dp" />
+        android:layout_alignParentEnd="true" />
 
-    <ImageView
-        android:id="@+id/cup"
-        android:background="@drawable/cup"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignBottom="@+id/watch"
-        android:layout_toLeftOf="@+id/watch"
-        android:layout_toStartOf="@+id/watch"
-        android:layout_marginRight="259dp"
-        android:layout_marginEnd="259dp"
-        android:layout_marginBottom="10dp" />
+    <EditText
+        android:id="@+id/answer_box"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_below="@+id/cup"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_next"
+        android:id="@+id/button_next"
+        android:background="#0000FF"
+        android:layout_below="@+id/answer_box"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>
