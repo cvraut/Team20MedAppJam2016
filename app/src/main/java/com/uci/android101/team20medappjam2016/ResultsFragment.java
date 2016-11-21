@@ -45,9 +45,9 @@ public class ResultsFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.results_fragment, container, false);
         TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-        textView.setText(getString(R.string.results, getScore()));
-        mViewPager = ((MainActivity)getActivity()).getPager();
-        goBack = (Button)rootView.findViewById(R.id.button_results);
+        textView.setText(getString(R.string.results, ((MainActivity) getActivity()).getScore()));
+        mViewPager = ((MainActivity) getActivity()).getPager();
+        goBack = (Button) rootView.findViewById(R.id.button_results);
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,69 +55,5 @@ public class ResultsFragment extends Fragment {
             }
         });
         return rootView;
-    }
-
-    public int getScore(){
-        int score = 0;
-        /*
-        FileInputStream fis;
-        try {
-            fis = ((MainActivity) getActivity()).openFileInput("scorefile");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
-            String ret = "";
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                ret = line;
-            }
-            reader.close();
-
-            String[] scores = ret.split("\\s+");
-            System.out.println("This is what is in the file...\n"+ret);
-            /*for(String num: scores){
-                score+=Integer.parseInt(num);
-            }
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }*/
-
-        String ret = "";
-
-        try {
-            InputStream inputStream = ((MainActivity) getActivity()).openFileInput("scorefile");
-
-            if ( inputStream != null ) {
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
-                StringBuilder stringBuilder = new StringBuilder();
-
-                while ( (receiveString = bufferedReader.readLine()) != null ) {
-                    stringBuilder.append(receiveString);
-                }
-
-                inputStream.close();
-                ret = stringBuilder.toString();
-                System.out.println(ret);
-
-                String[] scores = ret.split("\\s+");
-                for(String num: scores){
-                    score+=Integer.parseInt(num);
-                }
-            }
-        }
-        catch (FileNotFoundException e) {
-            Log.e("login activity", "File not found: " + e.toString());
-        } catch (IOException e) {
-            Log.e("login activity", "Can not read file: " + e.toString());
-        }
-
-        return score;
     }
 }
