@@ -56,14 +56,23 @@ public class ResultsFragment extends Fragment {
             }
         });
         TextView resultView = (TextView) rootView.findViewById(R.id.results_label);
-        if(finalResult < 18) {
-            resultView.setText(getString(R.string.result_severe));
-        }
-        else if(finalResult < 24 && finalResult >= 18) {
-            resultView.setText(getString(R.string.result_mild));
+        if(((MainActivity)getActivity()).getPermission()) {
+            if (finalResult < 18) {
+                resultView.setText(getString(R.string.result_severe));
+            } else if (finalResult < 24 && finalResult >= 18) {
+                resultView.setText(getString(R.string.result_mild));
+            } else {
+                resultView.setText(getString(R.string.result_none));
+            }
         }
         else {
-            resultView.setText(getString(R.string.result_none));
+            if (finalResult < 13) {
+                resultView.setText(getString(R.string.result_severe));
+            } else if (finalResult < 19 && finalResult >= 13) {
+                resultView.setText(getString(R.string.result_mild));
+            } else {
+                resultView.setText(getString(R.string.result_none));
+            }
         }
         return rootView;
     }

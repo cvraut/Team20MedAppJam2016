@@ -208,32 +208,33 @@ public class TextQuestionFragment extends Fragment implements LocationListener{
                 }
                 break;
             case 2:
-                LocationManager mLocationManager = (LocationManager) ((MainActivity)getActivity()).getSystemService(Context.LOCATION_SERVICE);
-                Criteria criteria = new Criteria();
-                String provider = mLocationManager.getBestProvider(criteria, false);
-                Location location = null;
-                try {
-                    location = mLocationManager.getLastKnownLocation(provider);
-                }
-                catch (SecurityException e) {
-                    e.printStackTrace();
-                }
-                if(location != null) {
-                    onLocationChanged(location);
-                    if(country != null && s.contains(country)) {
-                        score++;
+                if(((MainActivity)getActivity()).getPermission()) {
+                    LocationManager mLocationManager = (LocationManager) ((MainActivity) getActivity()).getSystemService(Context.LOCATION_SERVICE);
+                    Criteria criteria = new Criteria();
+                    String provider = mLocationManager.getBestProvider(criteria, false);
+                    Location location = null;
+                    try {
+                        location = mLocationManager.getLastKnownLocation(provider);
+                    } catch (SecurityException e) {
+                        e.printStackTrace();
                     }
-                    if(state != null && s.contains(state)) {
-                        score++;
-                    }
-                    if(county != null && s.contains(county)) {
-                        score++;
-                    }
-                    if(city != null && s.contains(city)) {
-                        score++;
-                    }
-                    if(zipcode != null && s.contains(zipcode)) {
-                        score++;
+                    if (location != null) {
+                        onLocationChanged(location);
+                        if (country != null && s.contains(country)) {
+                            score++;
+                        }
+                        if (state != null && s.contains(state)) {
+                            score++;
+                        }
+                        if (county != null && s.contains(county)) {
+                            score++;
+                        }
+                        if (city != null && s.contains(city)) {
+                            score++;
+                        }
+                        if (zipcode != null && s.contains(zipcode)) {
+                            score++;
+                        }
                     }
                 }
                 break;

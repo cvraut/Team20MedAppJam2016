@@ -1,10 +1,14 @@
 package com.uci.android101.team20medappjam2016;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -30,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
+    private static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION = 1;
+    private static final int MY_PERMISSIONS_ACCESS_COARSE_LOCATION = 2;
     public com.uci.android101.team20medappjam2016.SectionsPagerAdapter mSectionsPagerAdapter;
+    public boolean locations;
     public int totalScore;
 
     /**
@@ -49,7 +56,13 @@ public class MainActivity extends AppCompatActivity {
                     fList.add(TextQuestionFragment.newInstance(i, "What is the current Year? Month? Season? Date? Day of the week?"));
                     break;
                 case 2:
-                    fList.add(TextQuestionFragment.newInstance(i, "What Country are we in? State? County? City? Zip Code?"));
+                    if(locations) {
+                        fList.add(TextQuestionFragment.newInstance(i, "What Country are we in? State? County? City? Zip Code?"));
+                    }
+                    else {
+                        fList.add(TextQuestionFragment.newInstance(i, "This question is unavailable without location permissions. " +
+                                "Please move on."));
+                    }
                     break;
                 case 3:
                     fList.add(ImageFragment.newInstance(i));
@@ -98,15 +111,46 @@ public class MainActivity extends AppCompatActivity {
         return fList;
     }
 
+
     public MyViewPager getPager() {
         return mViewPager;
+    }
+    public boolean getPermission() {
+        return locations;
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_ACCESS_FINE_LOCATION:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    locations = true;
+                }
+                else {
+                    locations = false;
+                }
+            case MY_PERMISSIONS_ACCESS_COARSE_LOCATION:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    locations = true;
+                }
+                else {
+                    locations = false;
+                }
+                break;
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         setContentView(R.layout.activity_main);
-
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_ACCESS_FINE_LOCATION);
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MY_PERMISSIONS_ACCESS_COARSE_LOCATION);
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         List<Fragment> flist = getFragments();
