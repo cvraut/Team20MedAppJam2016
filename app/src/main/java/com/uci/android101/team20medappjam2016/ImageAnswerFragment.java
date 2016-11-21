@@ -114,7 +114,6 @@ public class ImageAnswerFragment extends Fragment {
         }
         else {
             score = Math.max(0, score - 1);
-
             return false;
         }
     }
