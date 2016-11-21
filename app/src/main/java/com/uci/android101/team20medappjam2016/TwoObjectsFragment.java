@@ -90,6 +90,9 @@ public class TwoObjectsFragment extends Fragment {
 
     private void saveAnswer(String s) {
         int score = 0;
+        if(s == null) {
+            s = "";
+        }
         s = s.toLowerCase();
         if(s.contains("cup")) {
             score++;

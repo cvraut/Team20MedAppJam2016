@@ -34,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-    private static final int MY_PERMISSIONS_ACCESS_FINE_LOCATION = 1;
-    private static final int MY_PERMISSIONS_ACCESS_COARSE_LOCATION = 2;
+    private static final int MY_PERMISSIONS_ACCESS_LOCATION = 1;
     public com.uci.android101.team20medappjam2016.SectionsPagerAdapter mSectionsPagerAdapter;
     public boolean locations;
     public int totalScore;
@@ -121,14 +120,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
-            case MY_PERMISSIONS_ACCESS_FINE_LOCATION:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    locations = true;
-                }
-                else {
-                    locations = false;
-                }
-            case MY_PERMISSIONS_ACCESS_COARSE_LOCATION:
+            case MY_PERMISSIONS_ACCESS_LOCATION:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     locations = true;
                 }
@@ -136,8 +128,6 @@ public class MainActivity extends AppCompatActivity {
                     locations = false;
                 }
                 break;
-            // other 'case' lines to check for other
-            // permissions this app might request
         }
     }
     @Override
@@ -145,11 +135,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         setContentView(R.layout.activity_main);
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_ACCESS_FINE_LOCATION);
-        }
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MY_PERMISSIONS_ACCESS_COARSE_LOCATION);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_ACCESS_LOCATION);
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

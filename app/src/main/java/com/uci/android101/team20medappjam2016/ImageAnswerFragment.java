@@ -80,7 +80,7 @@ public class ImageAnswerFragment extends Fragment {
                 }
                 if (answered){
                     ((MainActivity)getActivity()).appendScore(score);
-                    mViewPager.setCurrentItem(getItem(+1), true);
+                    mViewPager.setCurrentItem(5, true);
                 }
                 else {
                     textView.setText("Try Again");
