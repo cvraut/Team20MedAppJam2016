@@ -1,5 +1,6 @@
 package com.uci.android101.team20medappjam2016;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -7,6 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.io.DataOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Created by codyx on 11/19/2016.
@@ -41,14 +47,62 @@ public class MultipleButtonsFragment extends Fragment {
         textView.setText(getString(R.string.question_format, getArguments().getInt(ARG_SECTION_NUMBER), getArguments().getString(ARG_QUESTION)));
         mViewPager = ((MainActivity)getActivity()).getPager();
         buttonOne = (Button) rootView.findViewById(R.id.button_one);
+        buttonOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mViewPager.setCurrentItem(getItem(+1), true);
+            }
+        });
         buttonTwo = (Button) rootView.findViewById(R.id.button_two);
+        buttonTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mViewPager.setCurrentItem(getItem(+1), true);
+            }
+        });
         buttonThree = (Button) rootView.findViewById(R.id.button_three);
+        buttonThree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean rightButton = true;
+                //saveAnswer(rightButton);
+                mViewPager.setCurrentItem(getItem(+1), true);
+            }
+        });
         buttonFour = (Button) rootView.findViewById(R.id.button_four);
+        buttonFour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mViewPager.setCurrentItem(getItem(+1), true);
+            }
+        });
         return rootView;
     }
 
     private int getItem(int i) {
         return mViewPager.getCurrentItem() + i;
+    }
+
+    private void saveAnswer(boolean right) {
+        FileOutputStream fos;
+        DataOutputStream dos;
+        try{
+            fos = ((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_PRIVATE);
+            dos = new DataOutputStream(fos);
+            if(right) {
+                dos.write(1);
+            }
+            else {
+                dos.write(0);
+            }
+            dos.close();
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

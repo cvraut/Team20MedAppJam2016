@@ -19,6 +19,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.os.Handler;
 
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.RunnableFuture;
+
 
 /**
  * Created by chinmay on 11/14/2016.
@@ -27,6 +31,7 @@ import android.os.Handler;
 public class ImageFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     public MyViewPager mViewPager;
+    public boolean onStop = false;
     Button begin;
     /*private final int interval = 1000000; // 1 Second
     private Handler handler = new Handler();
@@ -63,11 +68,7 @@ public class ImageFragment extends Fragment {
                 mViewPager.setCurrentItem(getItem(+1), true);
             }
         });
-
-        /*System.out.println("Handler begins");
-        handler.postAtTime(runnable, System.currentTimeMillis()+interval);
-        handler.postDelayed(runnable, interval);
-        System.out.println("Handler Finished");*/
+        
         return rootView;
     }
 

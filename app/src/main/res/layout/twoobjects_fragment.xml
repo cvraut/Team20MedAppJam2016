@@ -9,14 +9,44 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.uci.android101.team20medappjam2016.MainActivity">
 
+    <TextView
+        android:id="@+id/title_label"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"/>
+
     <EditText
         android:id="@+id/answer_box"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:layout_alignParentBottom="true"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/cup"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="149dp" />
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:id="@+id/watch"
+        android:background="@drawable/watch"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="13dp"
+        android:layout_marginEnd="13dp" />
+
+    <ImageView
+        android:id="@+id/cup"
+        android:background="@drawable/cup"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignBottom="@+id/watch"
+        android:layout_toLeftOf="@+id/watch"
+        android:layout_toStartOf="@+id/watch"
+        android:layout_marginRight="259dp"
+        android:layout_marginEnd="259dp"
+        android:layout_marginBottom="10dp" />
 
 </RelativeLayout>
