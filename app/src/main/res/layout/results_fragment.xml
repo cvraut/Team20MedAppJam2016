@@ -9,12 +9,13 @@
     tools:context="com.uci.android101.team20medappjam2016.MainActivity">
 
     <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
+        android:id="@+id/results_label"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:layout_centerHorizontal="true"/>/>
-
+        android:textSize="23sp"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/section_label"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -22,17 +23,16 @@
         android:text="@string/button_results"
         android:id="@+id/button_results"
         android:background="@color/colorPrimaryDark"
-        android:layout_marginBottom="55dp"
+        android:layout_marginBottom="40dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:id="@+id/results_label"
-        android:layout_width="300dp"
+        android:id="@+id/section_label"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/section_label"
+        android:textSize="27sp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
