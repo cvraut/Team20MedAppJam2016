@@ -68,7 +68,7 @@ public class ImageFragment extends Fragment {
                 mViewPager.setCurrentItem(getItem(+1), true);
             }
         });
-        
+
         return rootView;
     }
 

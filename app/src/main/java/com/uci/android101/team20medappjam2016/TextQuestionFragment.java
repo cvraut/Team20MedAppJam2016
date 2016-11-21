@@ -3,6 +3,7 @@ package com.uci.android101.team20medappjam2016;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
@@ -236,10 +238,11 @@ public class TextQuestionFragment extends Fragment {
                 }
                 break;
         }
+        /*
         try {
             fos = ((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_PRIVATE);
             dos = new DataOutputStream(fos);
-            dos.write(score);
+            dos.writeBytes(Integer.toString(score)+' ');
             dos.close();
         }
         catch (FileNotFoundException e) {
@@ -247,6 +250,14 @@ public class TextQuestionFragment extends Fragment {
         }
         catch (IOException e) {
             e.printStackTrace();
+        }*/
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_APPEND));
+            outputStreamWriter.write(score+' ');
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
         }
     }
 

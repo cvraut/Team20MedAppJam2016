@@ -22,6 +22,9 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.io.OutputStreamWriter;
+import android.util.Log;
+
 
 /**
  * Created by codyx on 11/11/2016.
@@ -109,7 +112,7 @@ public class ImageAnswerFragment extends Fragment {
 
     public boolean checkAnswer(String s){
         s = s.toLowerCase();
-        if(s.contains("dog") || s.contains("ball") || s.contains("pen") ) {
+        if(s.contains("dog") && s.contains("ball") && s.contains("pen") ) {
             return true;
         }
         else {
@@ -120,12 +123,12 @@ public class ImageAnswerFragment extends Fragment {
     }
 
     public void writeAnswer(int score){
-        FileOutputStream fos;
+        /*FileOutputStream fos;
         DataOutputStream dos;
         try {
-            fos = ((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_PRIVATE);
+            fos = ((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_APPEND);
             dos = new DataOutputStream(fos);
-            dos.write(score);
+            dos.writeBytes(Integer.toString(score)+' ');
             dos.close();
         }
         catch (FileNotFoundException e) {
@@ -133,6 +136,14 @@ public class ImageAnswerFragment extends Fragment {
         }
         catch (IOException e) {
             e.printStackTrace();
+        }*/
+        try {
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_APPEND));
+            outputStreamWriter.write(score+' ');
+            outputStreamWriter.close();
+        }
+        catch (IOException e) {
+            Log.e("Exception", "File write failed: " + e.toString());
         }
     }
 }
