@@ -17,4 +17,5 @@
     <string name="result_none">No cognitive impairment: Little to no risk of Alzheimer\'s</string>
     <string name="result_mild">Mild cognitive impairment: Doctor attention might be necessary for Alzheimer\'s.</string>
     <string name="result_severe">Severe cognitive impariment: Doctor attention highly recommended for Alzheimer\'s.</string>
+    <string name="no_location">This question is unavailable without location permissions. Please move on.</string>
 </resources>

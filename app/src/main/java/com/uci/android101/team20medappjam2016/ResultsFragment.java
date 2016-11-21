@@ -1,8 +1,10 @@
 package com.uci.android101.team20medappjam2016;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +58,8 @@ public class ResultsFragment extends Fragment {
             }
         });
         TextView resultView = (TextView) rootView.findViewById(R.id.results_label);
-        if(((MainActivity)getActivity()).getPermission()) {
+        if(ContextCompat.checkSelfPermission(((MainActivity)getActivity()), android.Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(((MainActivity)getActivity()), android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             if (finalResult < 18) {
                 resultView.setText(getString(R.string.result_severe));
             } else if (finalResult < 24 && finalResult >= 18) {

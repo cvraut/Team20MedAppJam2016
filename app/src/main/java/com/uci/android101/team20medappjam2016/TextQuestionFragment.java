@@ -1,6 +1,7 @@
 package com.uci.android101.team20medappjam2016;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -9,6 +10,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -64,7 +66,14 @@ public class TextQuestionFragment extends Fragment implements LocationListener{
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.textquestion_fragment, container, false);
         TextView textView = (TextView) rootView.findViewById(R.id.question_label);
-        textView.setText(getString(R.string.question_format, getArguments().getInt(ARG_SECTION_NUMBER), getArguments().getString(ARG_QUESTION)));
+        if(getArguments().getInt(ARG_SECTION_NUMBER) == 2 &&
+                ContextCompat.checkSelfPermission(((MainActivity)getActivity()), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(((MainActivity)getActivity()), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            textView.setText(R.string.no_location);
+        }
+        else {
+            textView.setText(getString(R.string.question_format, getArguments().getInt(ARG_SECTION_NUMBER), getArguments().getString(ARG_QUESTION)));
+        }
         mViewPager = ((MainActivity)getActivity()).getPager();
         final EditText textField = (EditText) rootView.findViewById(R.id.answer_box);
         textField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -208,7 +217,9 @@ public class TextQuestionFragment extends Fragment implements LocationListener{
                 }
                 break;
             case 2:
-                if(((MainActivity)getActivity()).getPermission()) {
+                if(ContextCompat.checkSelfPermission(((MainActivity)getActivity()), android.Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED &&
+                        ContextCompat.checkSelfPermission(((MainActivity)getActivity()), android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                    System.out.println("HELLO");
                     LocationManager mLocationManager = (LocationManager) ((MainActivity) getActivity()).getSystemService(Context.LOCATION_SERVICE);
                     Criteria criteria = new Criteria();
                     String provider = mLocationManager.getBestProvider(criteria, false);
