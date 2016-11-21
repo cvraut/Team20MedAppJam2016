@@ -100,7 +100,11 @@ public class TimeDrawFragment extends Fragment{
         return rootView;
     }
     public void saveAnswer(String s) {
-
+        int score = 0;
+        if(s.contains("6:15")) {
+            score++;
+        }
+        ((MainActivity) getActivity()).appendScore(score);
     }
     private int getItem(int i) {
         return mViewPager.getCurrentItem() + i;

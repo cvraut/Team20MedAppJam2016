@@ -84,7 +84,7 @@ public class ImageAnswerFragment extends Fragment {
                     answered = checkAnswer(answer);
                 }
                 if (answered){
-                    writeAnswer(score);
+                    ((MainActivity)getActivity()).appendScore(score);
                     mViewPager.setCurrentItem(getItem(+1), true);
                 }
                 else {
@@ -110,39 +110,13 @@ public class ImageAnswerFragment extends Fragment {
         return mViewPager.getCurrentItem() + i;
     }
 
-    public boolean checkAnswer(String s){
+    public boolean checkAnswer(String s) {
         s = s.toLowerCase();
-        if(s.contains("dog") && s.contains("ball") && s.contains("pen") ) {
+        if (s.contains("dog") && s.contains("ball") && s.contains("pen")) {
             return true;
-        }
-        else {
+        } else {
             score = Math.max(0, score - 1);
             return false;
-        }
-    }
-
-    public void writeAnswer(int score){
-        /*FileOutputStream fos;
-        DataOutputStream dos;
-        try {
-            fos = ((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_APPEND);
-            dos = new DataOutputStream(fos);
-            dos.writeBytes(Integer.toString(score)+' ');
-            dos.close();
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }*/
-        try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_APPEND));
-            outputStreamWriter.write(score+' ');
-            outputStreamWriter.close();
-        }
-        catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
         }
     }
 }

@@ -84,24 +84,8 @@ public class MultipleButtonsFragment extends Fragment {
     }
 
     private void saveAnswer(boolean right) {
-        FileOutputStream fos;
-        DataOutputStream dos;
-        try{
-            fos = ((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_PRIVATE);
-            dos = new DataOutputStream(fos);
-            if(right) {
-                dos.write(1);
-            }
-            else {
-                dos.write(0);
-            }
-            dos.close();
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
+        if(right) {
+            ((MainActivity)getActivity()).appendScore(1);
         }
     }
 

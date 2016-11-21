@@ -81,8 +81,6 @@ public class TwoObjectsFragment extends Fragment {
 
     private void saveAnswer(String s) {
         int score = 0;
-        FileOutputStream fos;
-        DataOutputStream dos;
         s = s.toLowerCase();
         if(s.contains("cup")) {
             score++;
@@ -90,17 +88,6 @@ public class TwoObjectsFragment extends Fragment {
         if(s.contains("watch")) {
             score++;
         }
-        try {
-            fos = ((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_PRIVATE);
-            dos = new DataOutputStream(fos);
-            dos.write(score);
-            dos.close();
-        }
-        catch(FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        catch(IOException e) {
-            e.printStackTrace();
-        }
+        ((MainActivity)getActivity()).appendScore(score);
     }
 }

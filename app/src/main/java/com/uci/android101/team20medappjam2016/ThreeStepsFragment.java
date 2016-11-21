@@ -12,6 +12,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -55,6 +56,7 @@ public class ThreeStepsFragment extends Fragment {
                 steps++;
                 order.add(1);
                 if(steps == 3) {
+                    checkCorrect();
                     mViewPager.setCurrentItem(getItem(+1), true);
                 }
             }
@@ -67,6 +69,7 @@ public class ThreeStepsFragment extends Fragment {
                     steps++;
                     order.add(2);
                     if(steps == 3) {
+                        checkCorrect();
                         mViewPager.setCurrentItem(getItem(+1), true);
                     }
                 }
@@ -80,6 +83,7 @@ public class ThreeStepsFragment extends Fragment {
                     steps++;
                     order.add(3);
                     if(steps == 3) {
+                        checkCorrect();
                         mViewPager.setCurrentItem(getItem(+1), true);
                     }
                 }
@@ -98,7 +102,18 @@ public class ThreeStepsFragment extends Fragment {
     }
     // Backend method to check if user followed instructions correctly
     // Will implement later when i figure out to find out how lists are equivalent
-    private boolean checkCorrect() {
-        return true;
+    private void checkCorrect() {
+        //List<Integer> correctOrder = Arrays.asList(1, 2, 3);
+        int score = 0;
+        if(order.get(0) == 1) {
+            score++;
+        }
+        if(order.get(1) == 2) {
+            score++;
+        }
+        if(order.get(2) == 3) {
+            score++;
+        }
+        ((MainActivity)getActivity()).appendScore(score);
     }
 }

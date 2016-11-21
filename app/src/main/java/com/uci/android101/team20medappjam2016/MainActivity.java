@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     public com.uci.android101.team20medappjam2016.SectionsPagerAdapter mSectionsPagerAdapter;
+    public int totalScore;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -114,6 +115,12 @@ public class MainActivity extends AppCompatActivity {
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+    public void appendScore(int i) {
+        totalScore+=i;
+    }
+    public int getScore() {
+        return totalScore;
     }
     /*
     @Override

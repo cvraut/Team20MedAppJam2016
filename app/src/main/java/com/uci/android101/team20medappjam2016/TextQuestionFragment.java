@@ -287,14 +287,7 @@ public class TextQuestionFragment extends Fragment implements LocationListener{
                 }
                 break;
         }
-        try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_APPEND));
-            outputStreamWriter.write(score+' ');
-            outputStreamWriter.close();
-        }
-        catch (IOException e) {
-            Log.e("Exception", "File write failed: " + e.toString());
-        }
+        ((MainActivity) getActivity()).appendScore(score);
     }
 
     @Override
