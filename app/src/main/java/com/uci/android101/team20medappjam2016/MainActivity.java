@@ -47,15 +47,15 @@ public class MainActivity extends AppCompatActivity {
                 fList.add(ThreeStepsFragment.newInstance(i, "Do these steps in order: Press the button, " +
                         "flip the switch, then slide the slider all the way."));
             }
-            else if(i==3) {
-                fList.add(TimeDrawFragment.newInstance(i, "What is the time indicated by the clock? Please enter the" +
-                        "time like this: 8:15"));
-            }
             else if(i==4){
                 fList.add(ImageFragment.newInstance(i));
             }
             else if(i==5){
                 fList.add(ImageAnswerFragment.newInstance(i,"What were  the three images?"));
+            }
+            else if(i==13) {
+                fList.add(TimeDrawFragment.newInstance(i, "What is the time indicated by the clock? Please enter the" +
+                        "time like this: 8:15"));
             }
             else if(i==14) {
                 fList.add(ResultsFragment.newInstance(i));

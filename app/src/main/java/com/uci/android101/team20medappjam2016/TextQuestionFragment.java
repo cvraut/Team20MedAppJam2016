@@ -16,11 +16,9 @@ import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 /**
  * Created by codyx on 11/11/2016.
@@ -65,7 +63,7 @@ public class TextQuestionFragment extends Fragment {
                     String answer = textField.getText().toString();
                     saveAnswer(answer);
                     answered = true;
-                    //mViewPager.setCurrentItem(getItem(+1), true);
+                    ((MainActivity)getActivity()).hideKeyboard(rootView);
                 }
                 return answered;
             }
@@ -199,7 +197,7 @@ public class TextQuestionFragment extends Fragment {
                     }
                 }
                 break;
-            case 4:
+            case 5:
                 String [] ints = s.split("\\s+");
                 int[] results = new int[ints.length];
                 for (int i = 0; i < ints.length; i++) {
@@ -215,18 +213,18 @@ public class TextQuestionFragment extends Fragment {
                     }
                 }
                 break;
-            case 5:
-                String [] items2 = s.split("\\s+");
-                for(String item: items2) {
-                    if(item.equals("dog") || item.equals("ball") || item.equals("pen") ) {
-                        score++;
-                    }
+            case 6:
+                if(s.toLowerCase().contains("dog")) {
+                    score++;
                 }
-                break;
-            case 7:
-                List<String> input = Arrays.asList(s.split("\\s+"));
-                List<String> phrase = Arrays.asList("No", "if's", "ands", "or", "buts");
-                if(input.equals(phrase)) {
+                if(s.toLowerCase().contains("pen")) {
+                    score++;
+                }
+                if(s.toLowerCase().contains("ball")) {
+                    score++;
+                }
+            case 8:
+                if(s.toLowerCase().contains("no if's, ands, or buts.")) {
                     score++;
                 }
                 break;

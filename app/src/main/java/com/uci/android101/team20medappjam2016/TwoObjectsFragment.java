@@ -56,9 +56,9 @@ public class TwoObjectsFragment extends Fragment {
                 boolean answered = false;
                 if (id == EditorInfo.IME_ACTION_DONE) {
                     String answer = textField.getText().toString();
-                    //saveAnswer(answer);
+                    saveAnswer(answer);
                     answered = true;
-                    mViewPager.setCurrentItem(getItem(+1), true);
+                    ((MainActivity)getActivity()).hideKeyboard(rootView);
                 }
                 return answered;
             }
@@ -80,14 +80,15 @@ public class TwoObjectsFragment extends Fragment {
     }
 
     private void saveAnswer(String s) {
-        String [] objects  = s.split("\\s+");
         int score = 0;
         FileOutputStream fos;
         DataOutputStream dos;
-        for(String object: objects) {
-            if(object.toLowerCase().equals("cup") || object.toLowerCase().equals("watch")){
-                score++;
-            }
+        s = s.toLowerCase();
+        if(s.contains("cup")) {
+            score++;
+        }
+        if(s.contains("watch")) {
+            score++;
         }
         try {
             fos = ((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_PRIVATE);

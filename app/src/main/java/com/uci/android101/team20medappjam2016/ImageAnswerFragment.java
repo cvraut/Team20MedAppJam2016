@@ -79,7 +79,7 @@ public class ImageAnswerFragment extends Fragment {
                     String answer = textField.getText().toString();
                     saveAnswer(answer);
                     answered = true;
-                    mViewPager.setCurrentItem(getItem(+1), true);
+                    ((MainActivity)getActivity()).hideKeyboard(rootView);
                 }
                 return answered;
             }
