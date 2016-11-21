@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_format">MINI MENTAL STATE EXAMINATION</string>
-    <string name="about">INSERT ABOUT INFO HERE</string>
+    <string name="about">This is a MiniMental State Examination.\nThis app will perform an examination to determine if the patient suffers from Alzheimer\'s with the hope of diagnosing the disease early to increase the effectivity of the treatment.\n\nThis mobile test is meant to be administered to the patient orally by another person. The proctor of the exam will input the examinee\'s answers into the text boxes, and allow the examinee to perform the actions themselves when prompted by the test.</string>
     <string name="question_format">Question %1$d. %2$s</string>
     <string name="button_title">BEGIN</string>
     <string name="button_steps">BUTTON</string>

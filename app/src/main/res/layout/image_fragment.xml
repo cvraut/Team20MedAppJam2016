@@ -12,7 +12,7 @@
         android:id="@+id/question3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Remember these images"
+        android:text="Have the Subject, Remember these images"
         android:textSize="25sp"
         android:layout_centerHorizontal="true" />
 
@@ -39,34 +39,6 @@
         android:layout_toLeftOf="@+id/doge"
         android:layout_toStartOf="@+id/doge" />
 
-    <ImageView
-        android:id="@+id/pen"
-        android:background="@drawable/pen"
-        android:layout_width="225dp"
-        android:layout_height="100dp"
-        android:layout_above="@+id/dog_text"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <ImageView
-        android:id="@+id/doge"
-        android:background="@drawable/doge"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignTop="@+id/pen"
-        android:layout_toRightOf="@+id/question3"
-        android:layout_toEndOf="@+id/question3" />
-
-    <ImageView
-        android:id="@+id/ball"
-        android:background="@drawable/ball"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="17dp"
-        android:layout_below="@+id/pen"
-        android:layout_toLeftOf="@+id/question3"
-        android:layout_toStartOf="@+id/question3" />
-
     <TextView
         android:id="@+id/ball_text"
         android:layout_width="wrap_content"
@@ -78,15 +50,46 @@
         android:layout_toEndOf="@+id/pen"
         android:layout_marginTop="18dp" />
 
+    <ImageView
+        android:id="@+id/ball"
+        android:background="@drawable/ball"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/pen"
+        android:layout_toRightOf="@+id/imageDisplay"
+        android:layout_toEndOf="@+id/imageDisplay"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_next"
         android:id="@+id/button_next"
         android:background="@color/colorPrimaryDark"
+        android:layout_alignBaseline="@+id/ball_text"
         android:layout_alignBottom="@+id/ball_text"
-        android:layout_alignLeft="@+id/dog_text"
-        android:layout_alignStart="@+id/dog_text"
-        android:layout_marginLeft="40dp"
-        android:layout_marginStart="40dp" />
+        android:layout_alignRight="@+id/question3"
+        android:layout_alignEnd="@+id/question3" />
+
+    <ImageView
+        android:id="@+id/doge"
+        android:background="@drawable/doge"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginRight="26dp"
+        android:layout_marginEnd="26dp"
+        android:layout_alignTop="@+id/pen_text"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:id="@+id/pen"
+        android:background="@drawable/pen"
+        android:layout_width="225dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/question3"
+        android:layout_alignLeft="@+id/ball"
+        android:layout_alignStart="@+id/ball" />
 </RelativeLayout>

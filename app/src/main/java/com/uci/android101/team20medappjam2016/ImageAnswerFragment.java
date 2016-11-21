@@ -36,7 +36,7 @@ public class ImageAnswerFragment extends Fragment {
     private final String SCORE_FILE = "scorefile";
     public MyViewPager mViewPager;
     private int score = 5;
-    private final int interval = 6000;
+    private final int interval = 10000;
     private Handler handler = new Handler();
     private Runnable runnable = new Runnable(){
         public void run() {
