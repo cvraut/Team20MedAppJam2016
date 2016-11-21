@@ -32,7 +32,8 @@ public class ImageAnswerFragment extends Fragment {
     private static final String ARG_QUESTION = "section_question";
     private final String SCORE_FILE = "scorefile";
     public MyViewPager mViewPager;
-    Button nextPage;
+    private int score;
+    private boolean nextPage = false;
     private final int interval = 6000; // 1 Second
     private Handler handler = new Handler();
     private Runnable runnable = new Runnable(){
@@ -74,14 +75,20 @@ public class ImageAnswerFragment extends Fragment {
         textField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                boolean answered = false;
-                if (id == EditorInfo.IME_ACTION_DONE) {
-                    String answer = textField.getText().toString();
-                    saveAnswer(answer);
-                    answered = true;
-                    mViewPager.setCurrentItem(getItem(+1), true);
-                }
-                return answered;
+            boolean answered = false;
+            if (id == EditorInfo.IME_ACTION_DONE) {
+                String answer = textField.getText().toString();
+                answered = checkAnswer(answer);
+            }
+            if (answered){
+                writeAnswer(score);
+                mViewPager.setCurrentItem(getItem(+1), true);
+            }
+            else {
+                textView.setText("Try Again");
+                mViewPager.setCurrentItem(getItem(-1), true);
+            }
+            return answered;
             }
         });
 
@@ -93,13 +100,6 @@ public class ImageAnswerFragment extends Fragment {
                 }
             }
         });
-        nextPage = (Button) rootView.findViewById(R.id.button);
-        nextPage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mViewPager.setCurrentItem(getItem(+1), true);
-            }
-        });
         return rootView;
     }
 
@@ -107,66 +107,21 @@ public class ImageAnswerFragment extends Fragment {
         return mViewPager.getCurrentItem() + i;
     }
 
-    public void saveAnswer(String s) {
-        int questionNum = getArguments().getInt(ARG_SECTION_NUMBER);
+    public boolean checkAnswer(String s){
+        s = s.toLowerCase();
+        if(s.contains("dog") || s.contains("ball") || s.contains("pen") ) {
+            return true;
+        }
+        else {
+            score = Math.max(0, score - 1);
+
+            return false;
+        }
+    }
+
+    public void writeAnswer(int score){
         FileOutputStream fos;
         DataOutputStream dos;
-        int score = 0;
-        switch (questionNum){
-            case 1:
-                // Default to Pacific Time Zone
-                GregorianCalendar calender = new GregorianCalendar();
-                Date time = new Date();
-                calender.setTime(time);
-                String [] datetime = s.split("\\s+");
-                break;
-            case 2:
-                break;
-            case 3:
-                String [] items = s.split("\\s+");
-                for(String item: items) {
-                    if(item.equals("dog") || item.equals("ball") || item.equals("pen") ) {
-                        score++;
-                    }
-                }
-                break;
-            case 4:
-                String [] ints = s.split("\\s+");
-                int[] results = new int[ints.length];
-                for (int i = 0; i < ints.length; i++) {
-                    try {
-                        results[i] = Integer.parseInt(ints[i]);
-                    } catch (NumberFormatException nfe) {
-                        continue;
-                    };
-                }
-                for(int i = 1; i < results.length; i++) {
-                    if(results[i] - results[i-1] == 7) {
-                        score++;
-                    }
-                }
-                break;
-            case 5:
-                String [] items2 = s.split("\\s+");
-                for(String item: items2) {
-                    if(item.equals("dog") || item.equals("ball") || item.equals("pen") ) {
-                        score++;
-                    }
-                }
-                break;
-            case 7:
-                List<String> input = Arrays.asList(s.split("\\s+"));
-                List<String> phrase = Arrays.asList("No", "if's", "ands", "or", "buts");
-                if(input.equals(phrase)) {
-                    score++;
-                }
-                break;
-            case 10:
-                if(s.equals("yes") || s.equals("YES")) {
-                    score++;
-                }
-                break;
-        }
         try {
             fos = ((MainActivity) getActivity()).openFileOutput(SCORE_FILE, Context.MODE_PRIVATE);
             dos = new DataOutputStream(fos);
@@ -180,5 +135,4 @@ public class ImageAnswerFragment extends Fragment {
             e.printStackTrace();
         }
     }
-
 }
