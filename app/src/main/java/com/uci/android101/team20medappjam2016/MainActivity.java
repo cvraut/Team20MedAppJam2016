@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
                             "makes sense, enter 'yes', otherwise, enter 'no'."));
                     break;
                 case 12:
-                    fList.add(TimeDrawFragment.newInstance(i, "What is the time indicated by the clock? Please enter the" +
-                            "time like this: 8:15"));
+                    fList.add(TimeDrawFragment.newInstance(i, "What is the time indicated by the clock? Please enter the " +
+                            "time like this: 8:15."));
                     break;
                 case 13:
                     fList.add(ResultsFragment.newInstance(i));
