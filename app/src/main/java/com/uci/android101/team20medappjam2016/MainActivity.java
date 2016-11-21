@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 8:
                     fList.add(TextQuestionFragment.newInstance(i, "Tell the examinee to repeat the phrase: " +
-                            "No if's, ands, or buts, and enter their first response."));
+                            "No ifs, ands, or buts, and enter their first response."));
                     break;
                 case 9:
                     fList.add(ThreeStepsFragment.newInstance(i, "Do these steps in order: Press the button, " +
@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void appendScore(int i) {
         totalScore+=i;
+        System.out.println(totalScore);
     }
     public int getScore() {
         return totalScore;

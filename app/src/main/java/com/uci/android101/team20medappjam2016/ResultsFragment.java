@@ -45,7 +45,8 @@ public class ResultsFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.results_fragment, container, false);
         TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-        textView.setText(getString(R.string.results, ((MainActivity) getActivity()).getScore()));
+        int finalResult = ((MainActivity) getActivity()).getScore();
+        textView.setText(getString(R.string.results, finalResult));
         mViewPager = ((MainActivity) getActivity()).getPager();
         goBack = (Button) rootView.findViewById(R.id.button_results);
         goBack.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +55,16 @@ public class ResultsFragment extends Fragment {
                 mViewPager.setCurrentItem(0, true);
             }
         });
+        TextView resultView = (TextView) rootView.findViewById(R.id.results_label);
+        if(finalResult < 18) {
+            resultView.setText(getString(R.string.result_severe));
+        }
+        else if(finalResult < 24 && finalResult >= 18) {
+            resultView.setText(getString(R.string.result_mild));
+        }
+        else {
+            resultView.setText(getString(R.string.result_none));
+        }
         return rootView;
     }
 }

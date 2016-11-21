@@ -40,7 +40,7 @@ public class TextQuestionFragment extends Fragment implements LocationListener{
     private static final String ARG_QUESTION = "section_question";
     private final String SCORE_FILE = "scorefile";
     public MyViewPager mViewPager;
-    public String finalAddress, country, city, county, state, zipcode;
+    public String answer, country, city, county, state, zipcode;
     Button nextPage;
 
     public TextQuestionFragment(){
@@ -72,8 +72,7 @@ public class TextQuestionFragment extends Fragment implements LocationListener{
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 boolean answered = false;
                 if (id == EditorInfo.IME_ACTION_DONE) {
-                    String answer = textField.getText().toString();
-                    saveAnswer(answer);
+                    answer = textField.getText().toString();
                     answered = true;
                     ((MainActivity)getActivity()).hideKeyboard(rootView);
                 }
@@ -84,6 +83,7 @@ public class TextQuestionFragment extends Fragment implements LocationListener{
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
                 if(!hasFocus) {
+                    saveAnswer(answer);
                     ((MainActivity)getActivity()).hideKeyboard(rootView);
                 }
             }
@@ -109,7 +109,6 @@ public class TextQuestionFragment extends Fragment implements LocationListener{
         int score = 0;
         switch (questionNum){
             case 1:
-                // Default to Pacific Time Zone
                 GregorianCalendar calendar = new GregorianCalendar();
                 Date time = new Date();
                 calendar.setTime(time);

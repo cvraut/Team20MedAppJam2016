@@ -65,7 +65,7 @@ public class MultipleButtonsFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 boolean rightButton = true;
-                //saveAnswer(rightButton);
+                saveAnswer(rightButton);
                 mViewPager.setCurrentItem(getItem(+1), true);
             }
         });
