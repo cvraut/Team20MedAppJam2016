@@ -123,9 +123,10 @@ public class MainActivity extends AppCompatActivity {
             case MY_PERMISSIONS_ACCESS_LOCATION:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     locations = true;
+                    System.out.println("YES");
                 }
                 else {
-                    locations = false;
+
                 }
                 break;
         }
